@@ -1,0 +1,1 @@
+Utilizando MinGW version 6.3.0
