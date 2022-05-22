@@ -2,11 +2,11 @@
 
 ## Consigna
 
-Escriba un programa para imprimir la tabla correspondiente de
-Celsius a Fahrenheit
+    Escriba un programa para imprimir la tabla correspondiente de
+    Celsius a Fahrenheit
 
-Reescriba el programa de conversión de temperatura de la sección
-1.2 para que use una función de conversión.
+    Reescriba el programa de conversión de temperatura de la sección
+    1.2 para que use una función de conversión.
 
 ## Objetivos
 
