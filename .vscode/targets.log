@@ -8,12 +8,10 @@ mingw32-make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 22 14:11:40 2022
+# Make data base, printed on Sun May 29 20:09:48 2022
 
 # Variables
 
-# environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
 SYSTEMDRIVE = C:
 # environment
@@ -27,7 +25,7 @@ TMPDIR = C:\Users\DAMIYB~1\AppData\Local\Temp
 # environment
 LOCALAPPDATA = C:\Users\Dami y Bren\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-466dbbb6-9c83-422b-8311-a43070e38ae7-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-b8c04403-bbbb-4713-baa9-113393ee6cff-sock
 # environment
 VSCODE_CWD = F:\Facultad\SSL
 # environment
@@ -39,7 +37,7 @@ PROCESSOR_LEVEL = 23
 # environment
 NVM_DIR = C:/Users/Dami y Bren/.nvm
 # environment
-PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\PowerShell\Modules\
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\PowerShell\Modules\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\PowerShell\Modules\
 # default
 MAKE_COMMAND := mingw32-make.exe
 # environment
@@ -49,11 +47,9 @@ GOPATH = C:\Users\Dami y Bren\go
 # environment
 ACLOCAL_PATH = C:\Program Files\Git\mingw64\share\aclocal;C:\Program Files\Git\usr\share\aclocal
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11096_ETZLIRZDIZMVQDEM
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_6468_JMLJTFNGWCWKIGMV
 # environment
 ORIGINAL_TEMP = C:/Users/DAMIYB~1/AppData/Local/Temp
-# environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -125,7 +121,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 11096
+VSCODE_PID = 6468
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # environment
@@ -153,7 +149,7 @@ INFOPATH = C:\Program Files\Git\usr\local\info;C:\Program Files\Git\usr\share\in
 # makefile
 SHELL = C:/Program Files/Git/usr/bin/sh.exe
 # environment
-ORIGINAL_PATH = C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dami y Bren\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\AdoptOpenJDK\jdk-11.0.10.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\DTS\Binn;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files\Go\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\CAMWorks\CAMWorks2021;C:\Program Files\Git\cmd;C:\Program Files\dotnet;C:\Users\Dami y Bren\AppData\Local\Microsoft\WindowsApps;C:\Users\Dami y Bren\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\mingw64\bin;C:\Users\Dami y Bren\go\bin;C:\Users\Dami y Bren\AppData\Local\GitHubDesktop\bin;C:\Users\Dami y Bren\.dotnet\tools;C:\Program Files\heroku\bin
+ORIGINAL_PATH = C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dami y Bren\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\AdoptOpenJDK\jdk-11.0.10.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\DTS\Binn;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files\Go\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\CAMWorks\CAMWorks2021;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\DTS\Binn;C:\Program Files\Git\cmd;C:\Users\Dami y Bren\AppData\Local\Microsoft\WindowsApps;C:\Users\Dami y Bren\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\mingw64\bin;C:\Users\Dami y Bren\go\bin;C:\Program Files\heroku\bin
 # environment
 HOMEPATH = \Users\Dami y Bren
 # default
@@ -171,7 +167,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = C:\Users\Dami y Bren\.nvm\versions\node\v17.3.0\bin;C:\Users\Dami y Bren\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dami y Bren\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\AdoptOpenJDK\jdk-11.0.10.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\DTS\Binn;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files\Go\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\CAMWorks\CAMWorks2021;C:\Program Files\Git\cmd;C:\Program Files\dotnet;C:\Users\Dami y Bren\AppData\Local\Microsoft\WindowsApps;C:\Users\Dami y Bren\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\mingw64\bin;C:\Users\Dami y Bren\go\bin;C:\Users\Dami y Bren\AppData\Local\GitHubDesktop\bin;C:\Users\Dami y Bren\.dotnet\tools;C:\Program Files\heroku\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+PATH = C:\Users\Dami y Bren\.nvm\versions\node\v17.3.0\bin;C:\Users\Dami y Bren\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dami y Bren\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\AdoptOpenJDK\jdk-11.0.10.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\DTS\Binn;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files\Go\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\CAMWorks\CAMWorks2021;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\DTS\Binn;C:\Program Files\Git\cmd;C:\Users\Dami y Bren\AppData\Local\Microsoft\WindowsApps;C:\Users\Dami y Bren\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\mingw64\bin;C:\Users\Dami y Bren\go\bin;C:\Program Files\heroku\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 # environment
 COMPUTERNAME = DAMIYBREN-PC
 # default
@@ -289,11 +285,11 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 PROCESSOR_REVISION = 0802
 # environment
-TERM_PROGRAM_VERSION = 3.5.2
+TERM_PROGRAM_VERSION = 3.6.1
 # environment
 PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD
 # variable set hash-table stats:
-# Load=140/1024=14%, Rehash=0, Collisions=15/164=9%
+# Load=138/1024=13%, Rehash=0, Collisions=14/162=9%
 
 # Pattern-specific Variable Values
 
@@ -301,7 +297,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD
 
 # Directories
 
-# . (key f:/Facultad/SSL, mtime 1653227761): 8 files, no impossibilities.
+# . (key f:/Facultad/SSL, mtime 1653347072): 8 files, no impossibilities.
 
 # 8 files, no impossibilities in 1 directories.
 
@@ -360,12 +356,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 15 / storage = 136 B / avg = 9 B
-# current buf: size = 8162 B / used = 136 B / count = 15 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 15 / storage = 139 B / avg = 9 B
+# current buf: size = 8162 B / used = 139 B / count = 15 / avg = 9 B
 
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Sun May 22 14:11:40 2022
+# Finished Make data base on Sun May 29 20:09:48 2022
 
  

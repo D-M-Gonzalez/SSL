@@ -18,7 +18,8 @@
 ## Herramientas
 
 - Se utilizó MinGW version 6.3.0
-- Se utilizó c18 como compilador
+- Se utilizó GCC como compilador version 11.2.0
+- Se utilizó c18 como standar
 - Se utilizó mingw32-make.exe para usar el Makefile
 
 ## ¿Cómo utilizar el programa?
@@ -31,4 +32,17 @@
 6. Ingresar con los dígitos 1 o 2 si se quieren imprimir una tabla de celsius a fahrenheit o biseversa
 7. Ingresar el piso, el tope y el tamaño de los saltos de la tabla
 8. Verificar los datos ingresados e ingresar 1 si son correctos, 0 si se quieren corregir o 2 para salir
+
+## Datos del Alumno
+
+- Github: D-M-Gonzalez
+- Legajo: 137125-3
+- Apellido: Gonzalez
+- Nombre: Damian Martin
+
+
+### 01-interfaces
+
+    Se realiza un programa capaz de imprimir una tabla de conversión de temperaturas en ambos sentidos, con sus parámetros ingresados por consola.
+    Ademas, se incluye un ejecutable para poder probar la función de conversión.
 
