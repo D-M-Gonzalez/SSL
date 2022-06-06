@@ -302,3 +302,141 @@ int i=42;
 }
 ```
 
+### Investigar como en su entorno de desarrollo puede generar un programa ejecutable que se base en las dos unidades de traducción (i.e., archivos fuente, archivos con extensión .c). Luego generar ese ejecutable y probarlo.
+
+```c
+main.c: In function ‘main’:
+main.c:3:2: warning: implicit declaration of function ‘prontf’ [-Wimplicit-function-declaration]
+    3 |  prontf("La respuesta es %d\n", i);
+      |  ^~~~~~
+studio1.c: In function ‘prontf’:
+studio1.c:2:2: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+    2 |  printf("La respuesta es %d\n", i);
+      |  ^~~~~~
+studio1.c:2:2: warning: incompatible implicit declaration of built-in function ‘printf’
+studio1.c:1:1: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+  +++ |+#include <stdio.h>
+    1 | void prontf(const char* s, int i){
+La respuesta es 42
+```
+
+    El entorno de desarrollo puede hacerlo debido a que se encuentran en la misma carpeta. El mismo busca entre los archivos alguna declaración que coincida con la faltante y la incluye de encontrarla. Sin embargo, el compilador nos avisa con un warning que la función no fué declarada ni que se inlcuyó un header para identificar cual es la función a la que estamos llamando.
+
+### Responder ¿qué ocurre si eliminamos o agregamos argumentos a la invocación de prontf? Justifique.
+
+```c
+int main(void){
+int i=42;
+int c=55;
+ prontf("La respuesta es %d\n y %d\n", i, c);
+}
+```
+
+```c
+main.c: In function ‘main’:
+main.c:4:2: warning: implicit declaration of function ‘prontf’ [-Wimplicit-function-declaration]
+    4 |  prontf("La respuesta es %d\n y %d\n", i, c);
+      |  ^~~~~~
+studio1.c: In function ‘prontf’:
+studio1.c:2:2: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+    2 |  printf("La respuesta es %d\n", i);
+      |  ^~~~~~
+studio1.c:2:2: warning: incompatible implicit declaration of built-in function ‘printf’
+studio1.c:1:1: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+  +++ |+#include <stdio.h>
+    1 | void prontf(const char* s, int i){
+La respuesta es 42
+```
+
+    El resultado es el mismo. En la declaración de printf que utilizamos en studio1.c hemos indicado que solamente se le pasan 2 argumentos, la cadena de caracteres y un int, por lo que no podremos agregar argumentos adicionales.
+
+### Revisitar el punto anterior, esta vez utilizando un contrato de interfaz en un archivo header.
+
+### Escribir el contrato en studio.h.
+
+```c
+#ifndef _STUDIO_H_INCULDED_
+#define _STUDIO_H_INCULDED_
+void prontf(const char*, int);
+#endif
+```
+
+### Escribir hello9.c, un cliente que sí incluye el contrato.
+
+```c
+#include "studio.h" // Interfaz que importa
+int main(void){
+int i=42;
+ prontf("La respuesta es %d\n", i);
+}
+```
+
+### Escribir studio2.c, el proveedor que sí incluye el contrato.
+
+```c
+#include "studio.h" // Interfaz que exporta
+#include <stdio.h> // Interfaz que importa
+void prontf(const char* s, int i){
+ printf("La respuesta es %d\n", i);
+}
+```
+
+### Responder: ¿Qué ventaja da incluir el contrato en los clientes y en el proveedor.
+
+    El contrato es quien indica en el preprocesador quienes son los archivos específicos donde buscar nuestra declaración y ademas le indica al vinculador cómo tiene que utilizar esa declaración.
+    La ventaja es poder evitar errores por tener varias funciones con el mismo nombre declaradas dentro de nuestra ruta, o poder reemplazar declaraciones existentes por nuestras, ya que somos nosotros quienes controlamos por medio del contrato, la función a llamar.
+
+## Crédito extra
+
+### Investigue sobre bibliotecas. ¿Qué son? ¿Se puden distribuir? ¿Son portables? ¿Cuáles son sus ventajas y desventajas?. Desarrolle y utilice la biblioteca studio.
+
+- Se le llama biblioteca al conjunto archivos .c y .h que contiene los contratos establecidos para utilizar funciones, clases, u otros datos en los .c.
+- Las mismas ofrecen una solución para la reutilización de código, pudiendo transportarse a diferentes programas tan solo copiando el conjunto e incluyendo el header correspondiente en nuestro archivo a desarrollar.
+- Las bibliotecas al ser portables se pueden distribuir y utilizar libremente.
+- Su principal ventaja es el fácil acceso a código que ya existe y que suele ser muy utilizado, además de evitar tener que re-escribir estecódigo en varios archivos en el caso de que sea utilizado repetidas veces dentro de los mismos en nuestro programa.
+- Su desventaja es que la inclusión conlleva un aumento del tamaño de programa, por lo que su uso debe ser justificado.
+
+---------------------------------------
+
+## Desarrollo de POW2, una función de potencia
+
+### studio2.c
+
+```c
+#include "studio.h" // Interfaz que exporta
+#include <stdio.h> // Interfaz que importa
+void prontf(const char* s, int i){
+ printf("La respuesta es %d\n", i);
+}
+
+int pow2(int base, int expn){
+    int result = base;
+    for(int i=0; i<expn; i++){
+        result = result * base;
+    }
+    return result;
+}
+```
+
+### studio.h
+
+```c
+#ifndef _STUDIO_H_INCULDED_
+#define _STUDIO_H_INCULDED_
+void prontf(const char*, int);
+int pow2(int,int);
+#endif
+```
+
+### hello10.c
+
+```c
+#include "studio.h" // Interfaz que importa
+int main(void){
+int i=4;
+ pow2(i,4);
+ prontf("La respuesta es %d\n", i);
+}
+```
+
+    La respuesta es 1024
