@@ -1,33 +1,153 @@
-Primera salida gcc -E hello2.c
+# Fases de la traducción y errores
 
-# 1573 "C:/msys64/mingw64/include/stdio.h" 2 3
-# 2 "hello2.c" 2
+## Objetivos
 
-# 2 "hello2.c"
-int main(void){
+    Este trabajo tiene como objetivo identificar las fases del proceso de traducción o
+    Build y los posibles errores asociados a cada fase.
+    Para lograr esa identificación se ejecutan las fases de traducción una a una, se
+    detectan y corrigen errores, y se registran las conclusiones en readme.md.
+    No es un trabajo de desarrollo; es más, el programa que usamos como ejemplo es
+    simple, similar a hello.c pero con errores que se deben corregir. La complejidad
+    está en la identificación y comprensión de las etapas y sus productos.
+
+## Temas
+
+- Fases de traducción.
+- Preprocesamiento.
+- Compilación.
+- Ensamblado.
+- Vinculación (Link).
+- Errores en cada fase.
+
+
+## Tareas
+
+    1. La primera tarea es investigar las funcionalidades y opciones que su
+    compilador presenta para limitar el inicio y fin de las fases de traducción.
+    1. La siguiente tarea es poner en uso lo que se encontró. Para eso se debe
+    transcribir al readme.md cada comando ejecutado y su resultado o error
+    correspondiente a la siguiente secuencia de pasos. También en readme.md se
+    vuelcan las conclusiones y se resuelven los puntos solicitados. Para claridad,
+    mantener en readme.md la misma numeración de la secuencia de pasos
+
+## Resolución
+
+    Se parte de un archivo fuente que es corregido y refinado en sucesivos pasos.
+    Es importante no saltearse pasos para mantener la correlación, ya que el estado
+    dejado por el paso anterior es necesario para el siguiente.
+
+### Preprocesador
+
+### Escribir hello2.c, que es una variante de hello.c:
+
+```c
+#include <stdio.h>
+int/*medio*/main(void){
     int i=42;
     prontf("La respuesta es %d\n");
+```
 
-Output hello2.i
+--------------------------
 
-Trajo todo lo del include y saco el comentario
+### Preprocesar hello2.c, no compilar, y generar hello2.i. Analizar su contenido. ¿Qué conclusiones saca?
 
-_______
-
-
-
+    El preprocesador se encargó de incluir todo el contenido de stdio y de remover los comentarios existentes en hello2.c. Luego su trabjao concluyó. No hubo errores en el medio.
 
 
-$ gcc -S hello3.i -o hello3.s
-hello3.c: In function 'main':
-hello3.c:4:2: warning: implicit declaration of function 'prontf'; did you mean 'printf'? [-Wimplicit-function-declaration]
+### Escribir hello3.c, una nueva variante:
+
+```c
+int printf(const char * restrict s, ...);
+int main(void){
+ int i=42;
+ prontf("La respuesta es %d\n");
+```
+
+### Investigar e indicar la semántica de la primera línea
+
+    La primera línea es la declaración de la función printf, quien toma como parámetros al menos 1, que es un puntero constante a una variable del tipo char con nombre s. Hay que tener en cuenta en esta declaración, que lo constante es el puntero y no la variable s.
+
+### Preprocesar hello3.c, no compilar, y generar hello3.i. Buscar diferencias entre hello3.c y hello3.i
+
+```c
+# 0 "hello3.c"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "hello3.c"
+int printf(const char * restrict s, ...);
+int main(void){
+int i=42;
+ prontf("La respuesta es %d\n");
+```
+
+    Al no incluir stdio vemos como el preprocesador tampoco lo incluye en el hello3.i.
+
+## Compilación
+
+### Compilar el resultado y generar hello3.s, no ensamblar.
+
+    $ gcc -S hello3.i -o hello3.s
+    hello3.c: In function 'main':
+    hello3.c:4:2: warning: implicit declaration of function 'prontf'; did you mean 'printf'? [-Wimplicit-function-declaration]
     4 |  prontf("La respuesta es %d\n");
       |  ^~~~~~
       |  printf
-hello3.c:4:2: error: expected declaration or statement at end of input
+    hello3.c:4:2: error: expected declaration or statement at end of input
 
+    Vemos como gracias al error no nos dió un archivo de salida. El error en cuestión, es un error de sintaxis dentro de la declaración de la función main al faltarle la llave de cierre.
 
+### Corregir solo los errores, no los warnings, en el nuevo archivo hello4.c y empezar de nuevo, generar hello4.s, no ensamblar.
 
+```c
+int printf(const char * restrict s, ...);//declaracion
+int main(void){//declaracion y definicion
+int i=42;//declaracion y definicion
+ prontf("La respuesta es %d\n");//sentencia
+}
+```
+
+```s
+	.file	"hello4.c"
+	.text
+	.def	__main;	.scl	2;	.type	32;	.endef
+	.section .rdata,"dr"
+.LC0:
+	.ascii "La respuesta es %d\12\0"
+	.text
+	.globl	main
+	.def	main;	.scl	2;	.type	32;	.endef
+	.seh_proc	main
+main:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	.seh_endprologue
+	call	__main
+	movl	$42, -4(%rbp)
+	leaq	.LC0(%rip), %rax
+	movq	%rax, %rcx
+	call	prontf
+	movl	$0, %eax
+	addq	$48, %rsp
+	popq	%rbp
+	ret
+	.seh_endproc
+	.ident	"GCC: (Rev10, Built by MSYS2 project) 11.2.0"
+	.def	prontf;	.scl	2;	.type	32;	.endef
+```
+
+### Leer hello4.s, investigar sobrelenguajeensamblador,e indicar de forma sintética cual es el objetivo de ese código.
+
+    El objetivo de hello4.s es cambiar el código de alta abstracción presente en hello4.i a código que la máquina puede entender. El código asembler ahora realiza lo mismo pero desde el punto de vista del manejo de memoria y del armado del callstack para poder realizar las operaciones en el orden que le indicamos en hello4.c
+
+### Ensamblar hello4.s en hello4.o, no vincular.
+
+    Podemos ver como se generó hello4.o y vemos que su resultado es estrictamente numérico, utilizando la llamada a od para poder traduccir el archivo objeto.
+
+```
 $ od -t x1 hello4.o
 0000000 64 86 07 00 00 00 00 00 00 02 00 00 14 00 00 00
 0000020 00 00 04 00 2e 74 65 78 74 00 00 00 00 00 00 00
@@ -87,11 +207,98 @@ $ od -t x1 hello4.o
 0001560 74 61 24 7a 7a 7a 00 2e 72 64 61 74 61 24 7a 7a
 0001600 7a 00
 0001602
+```
+
+    En este archivo vemos la representación de los datos en formato hexadecimal bit por bit.
+
+## Vinculación
+
+### Vincular hello4.o con la biblioteca estándar y generar el ejecutable.
+
+    $ gcc hello4.o
+    C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: hello4.o:hello4.c:(.text+0x1f): undefined reference to `prontf'
+    collect2.exe: error: ld returned 1 exit status
+
+    Encontramos un error de vinculación, debido a que prontf no está declarado en ningún lado que el vinculador pueda encontrar.
+
+### Corregir en hello5.c y generar el ejecutable. Solo corregir lo necesario para que vincule.
+
+```c
+int printf(const char * restrict s, ...);//declaracion
+int main(void){//declaracion y definicion
+int i=42;//declaracion y definicion
+ printf("La respuesta es %d\n");//sentencia
+}
+```
+
+### Ejecutar y analizar el resultado
+
+    Se logra el ejecutable cambiando la sentencia prontf por printf pero el mismo devuelve La respuesta es 461338208. Este bug sucede debido a que no le indicamos a printf de donde tomar el valor.
+
+### Corregir en hello6.c y empezar de nuevo; verificar que funciona como se espera.
+
+```c
+int printf(const char * restrict s, ...);//declaracion
+int main(void){//declaracion y definicion
+int i=42;//declaracion y definicion
+ printf("La respuesta es %d\n",i);//sentencia
+}
+```
+
+    Se corrige la referencia a la variable. y el resultado es el correcto: La respuesta es 42
+
+## Remoción de prototipo
+
+###  Escribir hello7.c, una nueva variante:
 
 
+```c
+int main(void){
+int i=42;
+ printf("La respuesta es %d\n",i);
+}
+```
 
-$ gcc hello4.o
-C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: hello4.o:hello4.c:(.text+0x1f): undefined reference to `prontf'
-collect2.exe: error: ld returned 1 exit status
+### Explicar porqué funciona.
 
-compiler explorer para ver código assembler
+```c
+hello7.c: In function 'main':
+hello7.c:3:2: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+    3 |  printf("La respuesta es %d\n",i);
+      |  ^~~~~~
+hello7.c:1:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+  +++ |+#include <stdio.h>
+    1 | int main(void){
+hello7.c:3:2: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+    3 |  printf("La respuesta es %d\n",i);
+      |  ^~~~~~
+hello7.c:3:2: note: include '<stdio.h>' or provide a declaration of 'printf'
+```
+
+    Esto funciona porque como dice el warning, printf es conocido por el vinculador y sabe donde buscarlo en nuestra PC por mas que no este incluido por el preprocesador.
+
+## Compilación Separada: Contratos y Módulos
+
+### Escribir studio1.c (sí, studio1, no stdio) y hello8.c.
+
+    La unidad de traducción studio1.c tiene una implementación de la
+    función prontf, que es solo un wrappwer1
+    de la función estándar printf:
+
+```c
+void prontf(const char* s, int i){
+ printf("La respuesta es %d\n", i);
+}
+
+```
+
+    La unidad de traducción hello8.c, muy similar a hello4.c, invoca a
+    prontf, pero no incluye ningún header.
+
+```c
+int main(void){
+int i=42;
+ prontf("La respuesta es %d\n", i);
+}
+```
+
