@@ -65,7 +65,7 @@ int main(void){
 
 ### Investigar e indicar la semántica de la primera línea
 
-    La primera línea es la declaración de la función printf, quien toma como parámetros al menos 1, que es un puntero constante a una variable del tipo char con nombre s. Hay que tener en cuenta en esta declaración, que lo constante es el puntero y no la variable s.
+    La primera línea es la declaración de la función printf, quien toma como parámetros al menos 1, que es un puntero constante a una variable del tipo char con nombre s. Hay que tener en cuenta en esta declaración, que esto indica que s no va a cambiar dentro de printf. Restrict indica que este es el único puntero que apunta a esta cadena.
 
 ### Preprocesar hello3.c, no compilar, y generar hello3.i. Buscar diferencias entre hello3.c y hello3.i
 
@@ -384,7 +384,7 @@ void prontf(const char* s, int i){
 ### Responder: ¿Qué ventaja da incluir el contrato en los clientes y en el proveedor.
 
     El contrato es quien indica en el preprocesador quienes son los archivos específicos donde buscar nuestra declaración y ademas le indica al vinculador cómo tiene que utilizar esa declaración.
-    La ventaja es poder evitar errores por tener varias funciones con el mismo nombre declaradas dentro de nuestra ruta, o poder reemplazar declaraciones existentes por nuestras, ya que somos nosotros quienes controlamos por medio del contrato, la función a llamar.
+    La ventaja es poder evitar errores por tener varias funciones con el mismo nombre declaradas dentro de nuestra ruta, o poder reemplazar declaraciones existentes por nuestras, ya que somos nosotros quienes controlamos por medio del contrato, la función a llamar. Otra de las ventajas es que indica como utilizamos las funciones ingresadas en el contrato.
 
 ## Crédito extra
 
@@ -392,7 +392,7 @@ void prontf(const char* s, int i){
 
 - Se le llama biblioteca al conjunto archivos .c y .h que contiene los contratos establecidos para utilizar funciones, clases, u otros datos en los .c.
 - Las mismas ofrecen una solución para la reutilización de código, pudiendo transportarse a diferentes programas tan solo copiando el conjunto e incluyendo el header correspondiente en nuestro archivo a desarrollar.
-- Las bibliotecas al ser portables se pueden distribuir y utilizar libremente.
+- Las bibliotecas en sí no son portables, debido a que pueden estar compiladas para un procesador específico.
 - Su principal ventaja es el fácil acceso a código que ya existe y que suele ser muy utilizado, además de evitar tener que re-escribir estecódigo en varios archivos en el caso de que sea utilizado repetidas veces dentro de los mismos en nuestro programa.
 - Su desventaja es que la inclusión conlleva un aumento del tamaño de programa, por lo que su uso debe ser justificado.
 
